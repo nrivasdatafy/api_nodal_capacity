@@ -1,0 +1,17 @@
+{
+  "backend": {
+    "port": 5000
+  },
+  "tokens": {
+    "externals": {
+      "nameOfExternalCompanyThatWantsToConnectToYourAPI": {
+        "prod": "your-md5-key-for-prod",
+        "rest": "your-md5-key-for-other-env"
+      }
+    },
+    "jwtSecret": {
+      "prod": "your-md5-key-for-prod",
+      "rest": "your-md5-key-for-other-env"
+    }
+  }
+}

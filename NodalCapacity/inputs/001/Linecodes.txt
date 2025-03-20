@@ -1,0 +1,2 @@
+New Linecode.MV_line nphases=3 r1=0.00150600 x1=0.00042500 r0=0.00165400 x0=0.00042500 C1=0 C0=0 units=m baseFreq=50 Normamps=301.75 
+New Linecode.LV_line nphases=3 r1=0.00074500 x1=0.00032600 r0=0.00092300 x0=0.00191000 C1=0 C0=0 units=m baseFreq=50 Normamps=170.00 

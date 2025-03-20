@@ -1,0 +1,15 @@
+New Line.L01 Bus1=mt_01 Bus2=mt_02 linecode=MV_line length=500 units=m
+New Line.L02 Bus1=mt_02 Bus2=mt_03 linecode=MV_line length=500 units=m
+New Line.L03 Bus1=mt_03 Bus2=mt_04 linecode=MV_line length=500 units=m
+New Line.L04 Bus1=bt_01 Bus2=bt_02 linecode=LV_line length=100 units=m
+New Line.L05 Bus1=bt_02 Bus2=bt_03 linecode=LV_line length=120 units=m
+New Line.L06 Bus1=bt_02 Bus2=bt_04 linecode=LV_line length=110 units=m
+New Line.L07 Bus1=bt_04 Bus2=bt_05 linecode=LV_line length=100 units=m
+New Line.L08 Bus1=bt_04 Bus2=bt_06 linecode=LV_line length=200 units=m
+New Line.L09 Bus1=bt_07 Bus2=bt_08 linecode=LV_line length=120 units=m
+New Line.L10 Bus1=bt_08 Bus2=bt_09 linecode=LV_line length=100 units=m
+New Line.L11 Bus1=bt_09 Bus2=bt_10 linecode=LV_line length=100 units=m
+New Line.L12 Bus1=bt_11 Bus2=bt_12 linecode=LV_line length=120 units=m
+New Line.L13 Bus1=bt_12 Bus2=bt_13 linecode=LV_line length=120 units=m
+New Line.L14 Bus1=bt_12 Bus2=bt_14 linecode=LV_line length=100 units=m
+New Line.L15 Bus1=bt_12 Bus2=bt_15 linecode=LV_line length=200 units=m

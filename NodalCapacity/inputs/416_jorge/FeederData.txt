@@ -1,0 +1,4 @@
+Isc1=10e8
+Isc3=10e8
+feeder_dmin_day=100.0
+feeder_dmin_night=80.0

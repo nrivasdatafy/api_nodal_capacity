@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "strict": false,
+    "esModuleInterop": true,
+    "target": "es6",
+    "outDir": "build",
+    "rootDir": "./",
+    "sourceMap": true,
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "typeRoots": ["@types", "./node_modules/@types"],
+    "paths": {
+      "*": ["node_modules/@types/*"]
+    }
+  }
+}
