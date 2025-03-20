@@ -1,5 +1,6 @@
 ## Include the main module
-include(joinpath("..", "utils","Utils.jl"))
+include(joinpath("..", "utils", "Utils.jl"))
+
 using .Utils
 
 function api_compute_nodal_capacity(folder_name_model::String)

@@ -9,8 +9,8 @@ using Colors
 using Compose
 using NetworkLayout
 using DataStructures
-#using DataFrames
-#using PrettyTables
+using DataFrames
+using PrettyTables
 
 # Include the files from the src folder
 include(joinpath(@__DIR__, "validate_model_files.jl"))

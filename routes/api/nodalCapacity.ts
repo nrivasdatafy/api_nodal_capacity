@@ -25,7 +25,7 @@ router.post('/', checkAccess, async (req: Request, res: Response) => {
     const juliaScriptPath = path.join(__dirname, `${basePath}/${script}`);
 
     const julia = spawn('julia', [
-      '--project=.',
+      `--project=${path.join(__dirname, '../../NodalCapacity')}`,
       juliaScriptPath,
       functionName as string,
       ...(params ? params.map((value) => `${value}`) : [])
