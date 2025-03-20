@@ -6,7 +6,7 @@ import app from './app';
 import logger from './lib/logger';
 import { BackendConfig } from './typings/globals';
 
-const { port } = config.get<BackendConfig>('backend');
+const port=3000;
 
 const server = createServer(
   // {
