@@ -33,7 +33,7 @@ function get_node_short_circuit_level(node::String)::Float64
     I_sc_kA = I_sc / 1000.0
     
     # Compute the short-circuit level (kVA) for a three-phase system:
-    S_sc_kVA = sqrt(3) * v_base * I_sc_kA
+    S_sc_kVA = sqrt(3) * v_base * I_sc_kA * 1000.0
     
     return S_sc_kVA
 end

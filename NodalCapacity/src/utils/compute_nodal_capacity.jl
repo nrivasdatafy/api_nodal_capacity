@@ -58,7 +58,7 @@ function compute_nodal_capacity(
         # If bus is valid and below the threshold, compute hosting capacity
         if kv_base > 0 && kv_base < umbral_kv
             println("Computing hosting capacity for node: $node_name")
-            nodal_capacity[node_name] = get_hosting_capacity(graph, network, node_name)
+            nodal_capacity[node_name] = get_hosting_capacity(graph, network, node_name,folder_name_model)
         end
     end
 

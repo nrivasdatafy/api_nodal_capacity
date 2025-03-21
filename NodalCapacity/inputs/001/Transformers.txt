@@ -1,4 +1,4 @@
-New Transformer.AT_MT   buses=[sourcebus mt_01] kVAs=[23000, 23000] kVs=[66, 23] conns=[delta wye] xhl=2.5 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
-New Transformer.MT_BT1  buses=[mt_02 bt_01]     kVAs=[50, 50]       kVs=[23 0.4] conns=[delta wye] xhl=2.5 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
-New Transformer.MT_BT2  buses=[mt_03 bt_07]     kVAs=[50, 50]       kVs=[23 0.4] conns=[delta wye] xhl=2.5 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
-New Transformer.MT_BT3  buses=[mt_04 bt_11]     kVAs=[50, 50]       kVs=[23 0.4] conns=[delta wye] xhl=2.5 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
+New Transformer.AT_MT   buses=[sourcebus mt_01] kVAs=[2000, 2000] kVs=[66, 23] conns=[delta wye] xhl=2.5 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
+New Transformer.MT_BT1  buses=[mt_02 bt_01]     kVAs=[200, 200]       kVs=[23 0.4] conns=[delta wye] xhl=2.5 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
+New Transformer.MT_BT2  buses=[mt_03 bt_07]     kVAs=[200, 200]       kVs=[23 0.4] conns=[delta wye] xhl=2.5 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
+New Transformer.MT_BT3  buses=[mt_04 bt_11]     kVAs=[200, 200]       kVs=[23 0.4] conns=[delta wye] xhl=2.5 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95

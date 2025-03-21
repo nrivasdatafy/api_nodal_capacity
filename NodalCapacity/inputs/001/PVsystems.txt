@@ -1,4 +1,4 @@
-New PVSystem.PMGD_1 Bus1=mt_01      phases=3 kV=23      kVA=9000     irrad=1 Pmpp=9000    model=1 Vminpu=0.5 Vmaxpu=1.5
+New PVSystem.PMGD_1 Bus1=mt_01      phases=3 kV=23      kVA=100     irrad=1 Pmpp=100    model=1 Vminpu=0.5 Vmaxpu=1.5
 New PVSystem.NBPV_2 Bus1=bt_01.1    phases=1 kV=0.22    kVA=5       irrad=1 Pmpp=5      model=1 Vminpu=0.5 Vmaxpu=1.5
 New PVSystem.NBPV_3 Bus1=bt_07.1    phases=1 kV=0.22    kVA=5       irrad=1 Pmpp=5      model=1 Vminpu=0.5 Vmaxpu=1.5
 New PVSystem.NBPV_4 Bus1=bt_08.2    phases=1 kV=0.22    kVA=5       irrad=1 Pmpp=5      model=1 Vminpu=0.5 Vmaxpu=1.5
