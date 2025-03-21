@@ -1,11 +1,11 @@
 Clear
 Set DefaultBaseFrequency=50
 New Circuit.Alimentador basekv=66 pu=1.0 angle=0 frequency=50 phases=3 Isc1=10e8 Isc3=10e8 enabled=true
-Redirect /Users/bdoseverino/RepLocales/api_nodal_capacity/NodalCapacity/src/api/../../inputs/001/Linecodes.txt
-Redirect /Users/bdoseverino/RepLocales/api_nodal_capacity/NodalCapacity/src/api/../../inputs/001/Lines.txt
-Redirect /Users/bdoseverino/RepLocales/api_nodal_capacity/NodalCapacity/src/api/../../inputs/001/Transformers.txt
-Redirect /Users/bdoseverino/RepLocales/api_nodal_capacity/NodalCapacity/src/api/../../inputs/001/Loads.txt
-Redirect /Users/bdoseverino/RepLocales/api_nodal_capacity/NodalCapacity/src/api/../../inputs/001/PVsystems.txt
+Redirect /Users/bdoseverino/RepLocales/api_nodal_capacity/NodalCapacity/test/../inputs/001/Linecodes.txt
+Redirect /Users/bdoseverino/RepLocales/api_nodal_capacity/NodalCapacity/test/../inputs/001/Lines.txt
+Redirect /Users/bdoseverino/RepLocales/api_nodal_capacity/NodalCapacity/test/../inputs/001/Transformers.txt
+Redirect /Users/bdoseverino/RepLocales/api_nodal_capacity/NodalCapacity/test/../inputs/001/Loads.txt
+Redirect /Users/bdoseverino/RepLocales/api_nodal_capacity/NodalCapacity/test/../inputs/001/PVsystems.txt
 Set voltagebases=[66, 23, 0.38, 0.22]
 calcvoltagebases
 Set maxiterations=100

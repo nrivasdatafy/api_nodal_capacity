@@ -43,6 +43,7 @@ include(joinpath(@__DIR__, "create_mt_model.jl"))
 include(joinpath(@__DIR__, "check_and_create_folders.jl"))
 include(joinpath(@__DIR__, "get_transformer_nominal_capacities.jl"))
 include(joinpath(@__DIR__, "compute_all_transformers_dmin.jl"))
+include(joinpath(@__DIR__, "get_node_short_circuit_level.jl"))
 
 # Export the functions for use outside the module
 export  validate_model_files,
@@ -74,5 +75,6 @@ export  validate_model_files,
         create_mt_model,
         check_and_create_folders,
         get_transformer_nominal_capacities,
-        compute_all_transformers_dmin
+        compute_all_transformers_dmin,
+        get_node_short_circuit_level
 end

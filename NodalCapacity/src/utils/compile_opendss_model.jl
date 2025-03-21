@@ -15,7 +15,7 @@ function compile_opendss_model(folder_path_outputs::String)::Bool
 
         # Clear the current OpenDSS session
         OpenDSSDirect.Text.Command("clear")
-        
+            
         # Attempt to compile the provided file
         filename = joinpath(folder_path_outputs, output_filename)
         OpenDSSDirect.Text.Command("compile $filename")

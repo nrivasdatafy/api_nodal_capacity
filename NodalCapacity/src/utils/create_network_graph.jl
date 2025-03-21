@@ -1,4 +1,3 @@
-# Actualización de la estructura NetworkData para incluir load_to_phase
 Base.@kwdef mutable struct NetworkData
     node_to_index::Dict{String, Int64}          # Mapping of node names to graph indices
     line_to_index::Dict{String, Int64}          # Mapping of line names to graph indices
@@ -25,7 +24,6 @@ function create_network_graph()
     graph = SimpleGraph()
 
     node_to_index = Dict{String, Int64}()
-    
     line_to_index = Dict{String, Int64}()
     trfo_to_index = Dict{String, Int64}()
     load_to_index = Dict{String, Int64}()
@@ -36,18 +34,21 @@ function create_network_graph()
     load_to_nodes_idx = Dict{String, Tuple{Int64, Int64}}()
     pvsy_to_nodes_idx = Dict{String, Tuple{Int64, Int64}}()
     
-    # Nuevo diccionario para mapear la fase de cada carga
+    # New dictionary to map each load to its phase ("1", "2", or "3")
     load_to_phase = Dict{String, String}()
 
-    current_index = 1
+    # Use a Ref to hold current_index so it can be updated inside closures
+    current_index = Ref(1)
     root_node = nothing  # To store the Bus1 of the first transformer
 
-    # Helper function to get or create node indices
-    function get_or_create_node(node_name::String)
+    # Helper function to get or create node indices.
+    # Accepts any AbstractString and converts it to String.
+    function get_or_create_node(node_name::AbstractString)
+        node_name = string(node_name)
         if !haskey(node_to_index, node_name)
             add_vertex!(graph)
-            node_to_index[node_name] = current_index
-            current_index += 1
+            node_to_index[node_name] = current_index[]
+            current_index[] += 1
         end
         return node_to_index[node_name]
     end
@@ -98,9 +99,10 @@ function create_network_graph()
     load_idx = OpenDSSDirect.Loads.First()
     while load_idx > 0
         load_name = OpenDSSDirect.Loads.Name()
-        bus = replace(OpenDSSDirect.CktElement.BusNames()[1], r"\..*" => "")
+        bus_full = OpenDSSDirect.CktElement.BusNames()[1]
+        base_bus = split(bus_full, ".")[1]
         
-        source_idx = get_or_create_node(bus)
+        source_idx = get_or_create_node(base_bus)
         fictitious_node_name = "e_" * load_name
         target_idx = get_or_create_node(fictitious_node_name)
 
@@ -108,9 +110,13 @@ function create_network_graph()
         load_to_index[load_name] = target_idx
         load_to_nodes_idx[load_name] = (source_idx, target_idx)
         
-        # Obtain the load phase using OpenDSSDirect (e.g., OpenDSSDirect.Loads.Phases())
-        # Convert the result to a string; assuming Loads.Phases() returns an integer or similar.
-        load_phase = string(OpenDSSDirect.Loads.Phases())
+        # Extract phase from the full bus name.
+        parts = split(bus_full, ".")
+        if length(parts) > 1
+            load_phase = parts[2]
+        else
+            load_phase = "1"
+        end
         load_to_phase[load_name] = load_phase
 
         load_idx = OpenDSSDirect.Loads.Next()
@@ -134,18 +140,17 @@ function create_network_graph()
     end
 
     network = NetworkData(
-            node_to_index=node_to_index,
-            line_to_index=line_to_index,
-            trfo_to_index=trfo_to_index,
-            load_to_index=load_to_index,
-            pvsy_to_index=pvsy_to_index,
-            line_to_nodes_idx=line_to_nodes_idx,
-            trfo_to_nodes_idx=trfo_to_nodes_idx,
-            load_to_nodes_idx=load_to_nodes_idx,
-            pvsy_to_nodes_idx=pvsy_to_nodes_idx,
-            load_to_phase=load_to_phase
-        )
+        node_to_index = node_to_index,
+        line_to_index = line_to_index,
+        trfo_to_index = trfo_to_index,
+        load_to_index = load_to_index,
+        pvsy_to_index = pvsy_to_index,
+        line_to_nodes_idx = line_to_nodes_idx,
+        trfo_to_nodes_idx = trfo_to_nodes_idx,
+        load_to_nodes_idx = load_to_nodes_idx,
+        pvsy_to_nodes_idx = pvsy_to_nodes_idx,
+        load_to_phase = load_to_phase
+    )
 
-    # Return the undirected graph, the network data structure, and the root node
     return graph, network, root_node
 end

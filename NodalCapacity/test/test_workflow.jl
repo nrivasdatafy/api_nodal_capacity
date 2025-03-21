@@ -9,7 +9,7 @@ using .Utils
 ## ---------------------------------------------------
 
 ## Step 1) Check and create folders
-folder_path_model = joinpath(@__DIR__, "..", "inputs", "416_jorge")
+folder_path_model = joinpath(@__DIR__, "..", "inputs", "001")
 folder_path_outputs = joinpath(@__DIR__, "..", "outputs")
 println("\n⏳ Checking and creating folders...")
 if check_and_create_folders(folder_path_model, folder_path_outputs)
@@ -114,31 +114,43 @@ try
 catch e
     println("❌ Error: ",e)
 end
+
 ## ---------------------------------------------------
-## Network Functions
+## Compute minimum demand for transformers
 ## ---------------------------------------------------
 
-# Define feeder minimum demands (obtained from your data source)
-feeder_dmin_day = 100.0    # Example value in kW
-feeder_dmin_night = 80.0   # Example value in kW
+# Read feeder minimum demands from FeedData.txt
+feed_data_path = joinpath(folder_path_model, "FeederData.txt")
+feed_data = Dict{String, Float64}()
 
-# Create the graph and generate the rooted tree
-println("\nCreating network graph...")
-graph, network, root = create_network_graph()
-graph, network = generate_rooted_tree(graph, network, root)
+# Parse the FeedData.txt file
+open(feed_data_path, "r") do file
+    for line in eachline(file)
+        key, value = split(line, "=")
+        feed_data[key] = parse(Float64, value)
+    end
+end
+
+# Extract feeder minimum demands
+feeder_dmin_day = feed_data["feeder_dmin_day"]
+feeder_dmin_night = feed_data["feeder_dmin_night"]
 
 # Compute the prorated minimum demand for each transformer using OpenDSS.Direct data for capacities
 println("\nComputing prorated minimum demand for each transformer...")
 transformer_dmin = compute_all_transformers_dmin(feeder_dmin_day, feeder_dmin_night)
-
 println("Transformers minimum demand (day, night):")
 for (trf, (dmin_day, dmin_night)) in transformer_dmin
     println("$trf -> Day: $dmin_day kW, Night: $dmin_night kW")
 end
 
 ## ---------------------------------------------------
-## 
+## Network Graph fucntions
 ## ---------------------------------------------------
+
+# Create the graph and generate the rooted tree
+println("\nCreating network graph...")
+graph, network, root = create_network_graph()
+graph, network = generate_rooted_tree(graph, network, root)
 
 ## Count loads under each transformer
 println("\n⏳ Counting loads under each transformer...")
@@ -147,20 +159,27 @@ transformer_stats = count_loads_under_transformers(graph, network, true)
 println("✅ Transformer load count computed and table printed successfully.")
 
 # Find the upstream transformer for a given load
-load_name = "bt261122"  # Example load name for ID 416
-println("\nSearching the upstream transformer for load $load_name")
+load_name = "Load_LV_05"  # Example load name for ID 001
+println("\n⏳ Searching the upstream transformer for load $load_name")
 transformer_name = get_transformer_for_load(graph, network, load_name)
-println("The upstream transformer is: $transformer_name")
+println("✅  The upstream transformer is: $transformer_name")
 
 # Find the upstream transformer for a specific node
-node_name = "bt261122"  # Example load name for ID 416
-println("\nSearching the upstream transformer for node $node_name")
+node_name = "bt_09"  # Example node name for ID 001.
+println("\n⏳ Searching the upstream transformer for node $node_name")
 transformer_name = get_transformer_for_node(graph, network, node_name)
-println("The upstream transformer is: $transformer_name")
+println("✅  The upstream transformer is: $transformer_name")
+
+# Get short-circuit level at a specific node
+node_name = "bt_09"
+println("\n⏳ Calculating short-circuit level...")
+sc_level = get_node_short_circuit_level(node_name)
+println("✅ Short-circuit level at Bus1: ", sc_level, " kVA")
 
 # Get hosting capacity
-println("\nCalculating hosting capacity...")
-node_name = "bt261122"  # Example load name for ID 416
+println("\n⏳ Calculating hosting capacity...")
+node_name = "bt_09"  # Example load name for ID
+println("Calculating hosting capacity for node $node_name")
 hosting_capacity = get_hosting_capacity(graph, network, node_name)
 println("Hosting capacity: $hosting_capacity kVA")
 
