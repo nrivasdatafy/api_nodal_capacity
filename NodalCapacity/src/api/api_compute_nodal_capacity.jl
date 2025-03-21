@@ -31,13 +31,6 @@ function api_compute_nodal_capacity(folder_name_model::String)
         println("❌ Error: Failed to compile the OpenDSS model.")
     end
 
-    ## Step 4) Run the simulation
-    println("\n⏳ Running simulation...")
-    if run_simulation()
-        println("✅ Simulation ran successfully.")
-    else
-        println("❌ Error: Failed to run the simulation.")
-    end
 
     # Call the function
     nodal_capacity = compute_nodal_capacity(folder_path_model, folder_path_outputs)

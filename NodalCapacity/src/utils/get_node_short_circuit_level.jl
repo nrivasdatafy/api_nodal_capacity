@@ -13,9 +13,9 @@ where I_sc is the magnitude of the short-circuit current obtained from OpenDSSDi
 """
 function get_node_short_circuit_level(node::String)::Float64
     # Run simulation in fault mode (SolveMode = 9)
-    if !run_simulation(9)
-        error("Fault mode simulation (SolveMode=9) failed. Cannot compute short-circuit level.")
-    end
+   # if !run_simulation(9)
+   #     error("Fault mode simulation (SolveMode=9) failed. Cannot compute short-circuit level.")
+   # end
 
     # Set the active bus to the given node
     OpenDSSDirect.Circuit.SetActiveBus(node)

@@ -36,6 +36,14 @@ function compute_nodal_capacity(
     # This part is commented out here. Adjust or remove as needed.
     # -----------------------------------------------------------------------
 
+    # Step 1) Run the simulation
+    println("\n⏳ Running simulation...")
+    if run_simulation(9)
+        println("✅ Simulation ran successfully.")
+    else
+        println("❌ Error: Failed to run the simulation.")
+    end
+    
     # 2) Create the undirected network graph (and NetworkData) from the OpenDSS model
     graph, network = create_network_graph()
 

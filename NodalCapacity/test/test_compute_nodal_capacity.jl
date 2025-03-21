@@ -3,7 +3,7 @@ include(joinpath("..", "src", "utils", "Utils.jl"))
 using .Utils
 
 # 2) Define input/output paths
-folder_path_model   = joinpath(@__DIR__, "..", "inputs", "001")
+folder_path_model   = joinpath(@__DIR__, "..", "inputs", "002")
 folder_path_outputs = joinpath(@__DIR__, "..", "outputs")
 
 # 3) Check and create folders

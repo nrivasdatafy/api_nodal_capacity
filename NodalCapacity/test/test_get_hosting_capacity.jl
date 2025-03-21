@@ -27,11 +27,19 @@ else
     error("❌ Failed to compile the OpenDSS model.")
 end
 
-# 6) create the network graph
+# 6) Run the simulation
+println("\n⏳ Running simulation...")
+if run_simulation(9)
+    println("✅ Simulation ran successfully.")
+else
+    println("❌ Error: Failed to run the simulation.")
+end
+
+# 7) create the network graph
 graph, network = create_network_graph()
 println("✅ Network graph created successfully.")
 
-# 6) Compute the hosting capacity for one node
+# 8) Compute the hosting capacity for one node
 node_name = "bt_09"  # Example load name for ID
 println("\n⏳ Calculating hosting capacity for node $node_name")
 hosting_capacity = get_hosting_capacity(graph, network, node_name, folder_path_model)

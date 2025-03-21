@@ -3,44 +3,41 @@ find_deepest_node(
     subtree::SimpleDiGraph{Int},
     subnetwork::NetworkData,
     network::NetworkData
-)
+) -> (farthest_node::Int, farthest_bus::String, total_distance::Float64)
 
-Finds the deepest node (i.e. the one with the greatest accumulated distance) in a subtree.
+Finds the deepest node in a subtree by:
+1. Dynamically finding the 'root_sub' (the node with no parents).
+2. Doing a DFS from 'root_sub', accumulating distances from subnetwork.line_to_length.
+3. If the farthest node is fictitious (starts with \"e_\"), returns its parent instead.
 
-This function traverses the subtree (assumed to be a directed graph with node 1 as the root)
-using DFS and accumulates distances along each branch. The distance between two nodes is 
-determined by checking if a line exists between the corresponding nodes in subnetwork.line_to_nodes_idx
-and, if available, using its recorded length from subnetwork.line_to_length. If no line length is found,
-a default value of 1.0 is used.
-
-Additionally, if the farthest node is a fictitious load node (its name starts with "e_"), this function
-returns the parent node instead (the node "just before" the load node).
-
-Returns a tuple:
-  - farthest_node::Int: The index (in the subtree) of the deepest non-"e_" node.
-  - farthest_bus::String: The original bus name corresponding to that node.
-  - total_distance::Float64: The total accumulated distance from the root (node 1) to the returned node.
+Returns a tuple: (subtree_node_index, bus_name, distance).
 """
 function find_deepest_node(
     subtree::SimpleDiGraph{Int},
     subnetwork::NetworkData,
     network::NetworkData
 )
-    max_distance = Ref(0.0)
-    farthest_node = Ref(1)
 
-    # We'll store the distance to each node so we can adjust if we skip "e_" nodes at the end.
-    node_distance = Dict{Int, Float64}()
+    # 1) Identificar el nodo raíz del subgrafo: aquel que no tiene inneighbors
+    function find_subtree_root(subtree::SimpleDiGraph{Int})::Int
+        for n in 1:nv(subtree)
+            if isempty(inneighbors(subtree, n))
+                return n
+            end
+        end
+        error("No root found in this subtree (no node with empty inneighbors).")
+    end
 
-    # Build a reverse mapping from new node indices to original bus names in subnetwork.
-    index_to_node = Dict{Int, String}()
+    local root_sub = find_subtree_root(subtree)
+
+    # 2) Crear un mapeo invertido: índice => nombre del bus en el subgrafo
+    local index_to_node = Dict{Int, String}()
     for (bus, idx) in subnetwork.node_to_index
         index_to_node[idx] = bus
     end
 
-    # Helper function to calculate distance between two nodes in the subtree.
-    # We look up subnetwork.line_to_nodes_idx and subnetwork.line_to_length for a matching line.
-    # If not found, we return 1.0.
+    # 3) Función auxiliar para calcular la distancia entre dos nodos (s, d)
+    #    según subnetwork.line_to_nodes_idx y subnetwork.line_to_length.
     function get_distance(parent_idx::Int, child_idx::Int)
         for (line_name, (s, d)) in subnetwork.line_to_nodes_idx
             if s == parent_idx && d == child_idx
@@ -51,36 +48,38 @@ function find_deepest_node(
                 end
             end
         end
-        return 1.0
+        return 1.0  # default if no match found
     end
 
-    # DFS to track the distance to each node from node 1
-    function dfs(node::Int, accumulated::Float64)
-        node_distance[node] = accumulated
-        if accumulated > max_distance[]
-            max_distance[] = accumulated
+    # 4) DFS para acumular distancias desde root_sub
+    local max_distance = Ref(0.0)
+    local farthest_node = Ref(root_sub)
+    local node_distance = Dict{Int, Float64}()
+
+    function dfs(node::Int, dist_accum::Float64)
+        node_distance[node] = dist_accum
+        if dist_accum > max_distance[]
+            max_distance[] = dist_accum
             farthest_node[] = node
         end
         for neighbor in outneighbors(subtree, node)
-            dfs(neighbor, accumulated + get_distance(node, neighbor))
+            dfs(neighbor, dist_accum + get_distance(node, neighbor))
         end
     end
 
-    # Start DFS from node 1
-    dfs(1, 0.0)
+    # 5) Iniciar DFS desde root_sub
+    dfs(root_sub, 0.0)
 
-    # Retrieve the deepest node found by the DFS
-    final_node = farthest_node[]
-    final_bus = index_to_node[final_node]
-    final_distance = node_distance[final_node]
+    # 6) Recuperar el nodo más lejano
+    local final_node = farthest_node[]
+    local final_bus = index_to_node[final_node]
+    local final_distance = node_distance[final_node]
 
-    # If the deepest node is a load node (e.g., starts with "e_"), return its parent instead.
-    # This ensures we get the node "just before" the load node.
+    # 7) Si es un nodo ficticio (\"e_\"), tomar su padre en vez
     if startswith(final_bus, "e_")
-        parents = inneighbors(subtree, final_node)
+        local parents = inneighbors(subtree, final_node)
         if !isempty(parents)
-            # If multiple parents exist, we take the first. Adjust as needed.
-            parent_node = first(parents)
+            local parent_node = first(parents)
             final_node = parent_node
             final_bus = index_to_node[parent_node]
             final_distance = node_distance[parent_node]

@@ -9,7 +9,7 @@ using .Utils
 ## ---------------------------------------------------
 
 ## Step 1) Check and create folders
-folder_path_model = joinpath(@__DIR__, "..", "inputs", "001")
+folder_path_model = joinpath(@__DIR__, "..", "inputs", "002")
 folder_path_outputs = joinpath(@__DIR__, "..", "outputs")
 println("\n⏳ Checking and creating folders...")
 if check_and_create_folders(folder_path_model, folder_path_outputs)
