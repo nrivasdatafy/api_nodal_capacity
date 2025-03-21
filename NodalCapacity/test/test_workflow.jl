@@ -144,13 +144,28 @@ for (trf, (dmin_day, dmin_night)) in transformer_dmin
 end
 
 ## ---------------------------------------------------
-## Network Graph fucntions
+## Testing find_deepest_node function
 ## ---------------------------------------------------
 
-# Create the graph and generate the rooted tree
-println("\nCreating network graph...")
-graph, network, root = create_network_graph()
-graph, network = generate_rooted_tree(graph, network, root)
+# Step 1: Create the network graph using OpenDSSDirect-based functions
+graph, network = create_network_graph()
+println("✅ Network graph created successfully.")
+
+# Step 2: Extract a subgraph from a given transformer (adjust the transformer name as needed)
+transformer_name = "MT_BT3"  # Example transformer name
+sub_graph, sub_network = get_subgraph_from_transformer(graph, network, transformer_name)
+println("✅ Subgraph extracted for transformer $transformer_name.")
+
+# Step 3: Call find_deepest_node on the subgraph
+farthest_node, farthest_bus, total_distance = find_deepest_node(sub_graph, sub_network, network)
+println("\nDeepest node in the subgraph from $transformer_name:")
+println("  Node index (in subtree): $farthest_node")
+println("  Bus name: $farthest_bus")
+println("  Distance from root: $total_distance meters")
+
+## ---------------------------------------------------
+## Testing Count loads, get transformer for load, and get transformer for node functions
+## ---------------------------------------------------
 
 ## Count loads under each transformer
 println("\n⏳ Counting loads under each transformer...")
@@ -165,10 +180,14 @@ transformer_name = get_transformer_for_load(graph, network, load_name)
 println("✅  The upstream transformer is: $transformer_name")
 
 # Find the upstream transformer for a specific node
-node_name = "bt_09"  # Example node name for ID 001.
+node_name = "bt_07"  # Example node name for ID 001.
 println("\n⏳ Searching the upstream transformer for node $node_name")
 transformer_name = get_transformer_for_node(graph, network, node_name)
 println("✅  The upstream transformer is: $transformer_name")
+
+## ---------------------------------------------------
+## Testing get_node_short_circuit_level and get_hosting_capacity functions
+## ---------------------------------------------------
 
 # Get short-circuit level at a specific node
 node_name = "bt_09"
@@ -179,12 +198,6 @@ println("✅ Short-circuit level at Bus1: ", sc_level, " kVA")
 # Get hosting capacity
 println("\n⏳ Calculating hosting capacity...")
 node_name = "bt_09"  # Example load name for ID
-println("Calculating hosting capacity for node $node_name")
+println("\n⏳ Calculating hosting capacity for node $node_name")
 hosting_capacity = get_hosting_capacity(graph, network, node_name)
-println("Hosting capacity: $hosting_capacity kVA")
-
-# Compute the nodal capacity
-nodal_capacity = compute_nodal_capacity(folder_path_model, folder_path_outputs);
-
-# Plot the capacity map
-plt_cap = plot_capacity_map(folder_path_model, folder_path_outputs, "capacity_map.png", nodal_capacity);
+println("✅ Hosting capacity: $hosting_capacity kVA")

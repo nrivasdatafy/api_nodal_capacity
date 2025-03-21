@@ -1,4 +1,4 @@
-New Load.Lads_MV_01 Bus1=mt_04   phases=3 kV=23   kW=6000    pf=0.95 Vminpu=0.85 Vmaxpu=1.20 model=1   
+New Load.Load_MV_01 Bus1=mt_04   phases=3 kV=23   kW=6000    pf=0.95 Vminpu=0.85 Vmaxpu=1.20 model=1   
 New Load.Load_LV_01 Bus1=bt_03.1 phases=1 kV=0.22 kW=1.0     pf=0.98 Vminpu=0.85 Vmaxpu=1.20 model=1
 New Load.Load_LV_02 Bus1=bt_05.2 phases=1 kV=0.22 kW=1.0     pf=0.98 Vminpu=0.85 Vmaxpu=1.20 model=1
 New Load.Load_LV_03 Bus1=bt_06.3 phases=1 kV=0.22 kW=1.0     pf=0.98 Vminpu=0.85 Vmaxpu=1.20 model=1

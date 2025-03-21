@@ -1,6 +1,6 @@
 New Transformer.19 buses=[sourcebus bus_mt113707] conns=[delta wye] wdg=1 kvs=[66.0 23.0] kvas=[30000 30000] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
+New Transformer.903 buses=[bus_mt70003 bus_bt70007] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[5.0 5.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.3462 buses=[bus_mt70003 bus_bt70007] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[5.0 5.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
-New Transformer.903 buses=[bus_mt99734 bus_bt70007] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[5.0 5.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.1755 buses=[bus_mt70063 bus_bt70064] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[50.0 50.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.2777 buses=[bus_mt71178 bus_bt71180] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[300.0 300.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.947 buses=[bus_mt71472 bus_bt71591] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[75.0 75.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
@@ -64,7 +64,7 @@ New Transformer.2598 buses=[bus_mt119276 bus_bt89289] conns=[delta wye] wdg=1 kv
 New Transformer.2604 buses=[bus_mt89610 bus_bt89611] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[100.0 100.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.525 buses=[bus_mt89676 bus_bt89677] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[100.0 100.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.2620 buses=[bus_mt89849 bus_bt89848] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[15.0 15.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
-New Transformer.1025 buses=[bus_mt89880 bus_bt89881] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[5.0 5.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
+New Transformer.1025 buses=[bus_mt92977 bus_bt89883] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[5.0 5.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.1753 buses=[bus_mt89888 bus_bt89889] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[75.0 75.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.3502 buses=[bus_mt93228 bus_bt93229] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[75.0 75.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.3516 buses=[bus_mt94354 bus_bt93683] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[5.0 5.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
@@ -78,7 +78,7 @@ New Transformer.2007 buses=[bus_mt97018 bus_bt97019] conns=[delta wye] wdg=1 kvs
 New Transformer.1210 buses=[bus_mt81053 bus_bt98690] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[5.0 5.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.886 buses=[bus_mt99859 bus_bt99858] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[5.0 5.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.504 buses=[bus_mt100458 bus_bt100459] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[25.0 25.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
-New Transformer.1258 buses=[bus_mt100626 bus_bt100626] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[200.0 200.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
+New Transformer.1258 buses=[bus_mt94777 bus_bt100626] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[200.0 200.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.1806 buses=[bus_mt101249 bus_bt101250] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[100.0 100.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.1634 buses=[bus_mt123018 bus_bt102019] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[75.0 75.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.534 buses=[bus_mt102294 bus_bt102295] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[45.0 45.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
@@ -145,3 +145,4 @@ New Transformer.1853 buses=[bus_mt131649 bus_bt131650] conns=[delta wye] wdg=1 k
 New Transformer.1857 buses=[bus_mt131724 bus_bt131725] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[75.0 75.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.630 buses=[bus_mt132374 bus_bt132375] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[150.0 150.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
 New Transformer.1740 buses=[bus_mt113716 bus_bt132431] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[75.0 75.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
+New Transformer.9999 buses=[bus_mt83088 bus_PART_c3.845301] conns=[delta wye] wdg=1 kvs=[23.0 0.4] kvas=[16.0 16.0] xhl=4 %loadloss=1.5 tap=1.025 numtaps=5 maxtap=1.050 mintap=0.95
